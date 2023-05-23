@@ -1,0 +1,238 @@
+:root {
+    --regular: 300;
+    --semi-bold: 600;
+    --extra-bold: 800;
+
+    /* font sizes 14 px 18 px 24px*/
+    --dark-grey-blue: 209, 23%, 22%;
+    --dark-blue: 207, 26%, 17%;
+    --black: 200, 15%, 8%;
+    --grey: 0, 0%, 52%;
+    --off-white: 0, 0%, 98%;
+    --white: 0, 0%, 100%;
+
+    --border-radius: 5px;
+    /* - Very Dark Blue (Light Mode Text): hsl(200, 15%, 8%)
+    - Dark Gray (Light Mode Input): hsl(0, 0%, 52%)
+    - Very Light Gray (Light Mode Background): hsl(0, 0%, 98%)
+
+    - Dark Blue (Dark Mode Elements): hsl(209, 23%, 22%)
+    - Very Dark Blue (Dark Mode Background): hsl(207, 26%, 17%)
+
+    - White (Dark Mode Text & Light Mode Elements): hsl(0, 0%, 100%) */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    font: inherit;
+}
+
+img, svg {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+}
+
+body {
+    height: 100vh;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1rem;
+    font-weight: var(--regular);
+    color: hsl(var(--white));
+}
+
+body.light-mode {
+    background-color: hsl(var(--off-white));
+}
+
+body.dark-mode {
+    background-color: hsl(var(--dark-blue));
+    color: hsl(var(--black));
+}
+
+.light-mode {
+    background-color: hsl(var(--white));
+    color: hsl(var(--black));
+}
+
+.dark-mode {
+    background-color: hsl(var(--dark-grey-blue));
+    color: hsl(var(--white));
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 28px 80px 28px 80px;
+}
+
+.box-shadow {
+    border: none;
+    box-shadow: 0 2px 9px hsl(var(--black), 0.06);
+}
+
+header.dark-mode {
+    border-bottom: hsl(var(--dark-blue));
+}
+
+header.light-mode {
+    border-bottom: hsl(var(--grey));
+}
+
+h1 {
+    margin: unset;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    width: 136px;
+    height: 40px;
+    font-size: 1rem;
+}
+
+#dark-mode-btn {
+    padding: 0 1rem;
+    font-weight: var(--semi-bold);
+}
+
+#back-btn {
+    padding: 0px 36px;
+    font-weight: var(--regular);
+    margin-top: 2rem;
+}
+
+main {
+    padding: 48px 80px;
+}
+
+#parameters {
+    display: flex;
+    justify-content: space-between;
+}
+
+#search {
+    width: 480px;
+    height: 56px;
+    border-radius: var(--border-radius);
+    margin-right: 40px;
+}
+
+#continents-btn {
+    width: 200px;
+    height: 56px;
+    border-radius: var(--border-radius);
+    padding: 0 24px;
+    text-align: left;
+}
+
+.showFlexBox {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
+
+#continents-list {
+    position: absolute;
+    width: 200px;
+    height: 164px;
+    padding: unset;
+    margin-top: 4px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#continents-list button {
+    border: none;
+    text-align: left;
+    padding: 0 24px;
+    line-height: 20px;
+    width: 100%;
+}
+
+#countries {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 75px;
+}
+
+.country-card {
+    max-width: 264px;
+    height: 336px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.country-card:hover {
+    cursor: pointer;
+}
+
+.country-card-details {
+    padding: 24px;
+}
+
+.preview-country-name{
+    font-size: 18px;
+    font-weight: var(--extra-bold);
+    margin-bottom: 1rem;
+    line-height: 26px;
+}
+.preview-detail-prefix {
+    font-weight: var(--semi-bold);
+    margin-bottom: 8px;
+}
+
+#country-preview {
+    width: auto;
+    height: 400px;
+    margin-top: 80px;
+}
+
+#country-preview-flag {
+    width: 560px;
+    border-radius: 5px;
+    overflow: hidden;
+    height: fit-content;
+}
+
+.attribution { 
+    font-size: .6875rem;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: hsl(var(--grey)); 
+}
+
+.attribution a {
+    color: hsl(var(--grey));
+    font-size: .75rem; 
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+@media (min-width: 778px) {
+}
