@@ -1,3 +1,5 @@
+var ALL_COUNTRIES_JSON;
+
 function allCountriesJSON(fields) {
 	const root = "https://restcountries.com/v3.1/all";
 	const url = root + "?fields=" + fields;
@@ -14,27 +16,50 @@ function singleCountryJSON(id, fields) {
 	return promise;
 }
 
-function createCountryDetails(event) {
-              singleCountryJSON(event.currentTarget.id, "flags,name,tld,cca3,currencies,capital,region,subregion,languages,borders,population")
+function createCountryDetails(pEvent, pID) {
+              singleCountryJSON(pID == undefined ? pEvent.currentTarget.id : pID, "flags,name,tld,cca3,currencies,capital,region,subregion,languages,borders,population")
                 .then((response) => {
-                  console.log(response)
+                  var name = response.name.common,
+                    nativeName = Object.values(response.name.nativeName)[0].official,
+                    population = response.population,
+                    region = response.region,
+                    subregion = response.subregion,
+                    capital = response.capital[0],
+                    flag = response.flags.png,
+                    topLevelDomain = response.tld[0],
+                    currencies = Object.values(response.currencies)[0].name,
+                    languages = Object.values(response.languages).toString(),
+                    borderCountries = $("<h4>Border Countries:&nbsp;</h4>");
+
+                  Object.values(response.borders).forEach(function(pCountryID){
+                    var countryButton = $("<button class='light-mode box-shadow'>" + ALL_COUNTRIES_JSON.find(element => element.cca3 == pCountryID).name.common + "</button>"),
+                      id = pCountryID;
+                    countryButton.click(function(_pEvent){
+                      $("#back-btn").trigger("click");
+                      createCountryDetails(_pEvent, id)});
+                    borderCountries.append(countryButton);
+                  });
+                   
                   $("#parameters").hide();
                   $("#countries").hide();
                   $("#back-btn").show();
                   $("#country-preview").toggleClass("hide").toggleClass("showFlexBox");
-                  $("#country-preview")
-                    .append("<div id='country-preview-flag' class='box-shadow'><img src='" + response.flags.png + "'/></div")
-                    .append("<div id='country-preview-details' />");
-
-                    console.log(Object.values(response.name.nativeName)[0].official);
-                    console.log(response.population);
-                    console.log(response.region);
-                    console.log(response.subregion);
-                    console.log(response.capital[0]);
-
-                    console.log(response.tld[0]);
-                    console.log(Object.values(response.currencies)[0].name);
-                    console.log(Object.values(response.languages).toString());
+                  
+                  $("#country-preview-flag").append("<img src='" + flag + "'/>");
+                  $("#country-preview-details")
+                    .append("<h2>" + name + "</h2>")
+                    .append($("<div/>")
+                      .append($("<div/>")
+                        .append("<h4>Naitive Name:&nbsp;<p>" + nativeName + "</p>")
+                        .append("<h4>Population:&nbsp;<p>" + population + "</p>")
+                        .append("<h4>Region:&nbsp;<p>" + region + "</p>")
+                        .append("<h4>Region:&nbsp;<p>" + subregion + "</p>")
+                        .append("<h4>Capital:&nbsp;<p>" + capital + "</p>"))
+                      .append($("<div/>")
+                        .append("<h4>Top Level Domain:&nbsp;<p>" + topLevelDomain + "</p>")
+                        .append("<h4>Currencies:&nbsp;<p>" + currencies + "</p>")
+                        .append("<h4>Languages:&nbsp;<p>" + languages + "</p>")))
+                    .append(borderCountries);
                 })
                 .catch((error) => console.error({ error }));
 }
@@ -44,13 +69,13 @@ function createCountryPreview(value) {
     id = value.cca3,
     population = value.population,
     region = value.region,
-    capital = value.capital,
+    capital = value.capital[0],
     flag = value.flags.png,
     details = $("<div class='country-card-details'/>")
-      .append("<p class='preview-country-name'>" + name + "</p>")
-      .append("<p class='preview-detail-prefix'>Population: " + population + "</p>")
-      .append("<p class='preview-detail-prefix'>Region: " + region + "</p>")
-      .append("<p class='preview-detail-prefix'>Capital: " + capital + "</p>"),
+      .append("<h3>" + name + "</h3>")
+      .append("<h5>Population:&nbsp;<p>" + population + "</p>")
+      .append("<h5>Region:&nbsp;<p>" + region + "</p>")
+      .append("<h5>Capital:&nbsp;<p>" + capital + "</p>"),
     country = $("<div id='" + id + "' class='country-card box-shadow light-mode'/>")
     .append("<div><img src=" + flag + "></div")
     .append(details);
@@ -61,10 +86,8 @@ function createCountryPreview(value) {
 
 $(document).ready(function(){
   allCountriesJSON("flags,name,cca3,capital,region,population")
-    .then((response) => {response.forEach(createCountryPreview)})
+    .then((response) => { ALL_COUNTRIES_JSON = response; response.forEach(createCountryPreview);})
     .catch((error) => console.error({ error }));
-
-  https://restcountries.com/v3.1/alpha/ita?fields=name // for borders
   
   $("#dark-mode-btn").click(function(){
     var selector = $("body").hasClass("light-mode") ? $(".light-mode") : $(".dark-mode");
@@ -76,7 +99,8 @@ $(document).ready(function(){
   });
   
   $("#back-btn").click(function(){
-    $("#country-preview").empty();
+    $("#country-preview-flag").empty();
+    $("#country-preview-details").empty();
     $("#parameters").show();
     $("#countries").show();
     $("#back-btn").hide();
@@ -88,7 +112,7 @@ $(document).ready(function(){
 
     $("#countries").children().hide()
     $( "div:contains('" + regionFilter +"')" ).parent().show()
-    $("#continents-list").addClass("hide")
+    $("#continents-list").toggleClass("hide").toggleClass("showFlexBox");
   })
 
 });

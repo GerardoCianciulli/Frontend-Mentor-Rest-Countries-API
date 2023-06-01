@@ -1,9 +1,14 @@
 :root {
-    --regular: 300;
-    --semi-bold: 600;
-    --extra-bold: 800;
+    --fw-regular: 300;
+    --fw-semi-bold: 600;
+    --fw-extra-bold: 800;
 
-    /* font sizes 14 px 18 px 24px*/
+    --fs-extra-small: 12px;
+    --fs-small: 14px;
+    --fs-regular: 1rem;
+    --fs-large: 18px;
+    --fs-extra-large: 2rem;
+    
     --dark-grey-blue: 209, 23%, 22%;
     --dark-blue: 207, 26%, 17%;
     --black: 200, 15%, 8%;
@@ -38,12 +43,47 @@ img, svg {
     overflow: visible;
 }
 
+h2, h3 {
+    font-weight: var(--fw-extra-bold);
+}
+
+h2 {
+    font-size: 22px;
+    line-height: 40px;
+    margin-bottom: 23px;
+}
+
+h3 {
+    font-size: var(--fs-large);
+    line-height: 26px;
+    margin-bottom: 1rem;
+}
+
+h4, h5 {
+    display: -webkit-inline-box;
+    font-weight: var(--fw-semi-bold);
+}
+
+h4>p, h5>p {
+    font-weight: var(--fw-regular);
+}
+h4 {
+    font-size: 12px;
+    line-height: 32px;
+}
+
+h5 {
+    font-size: var(--fs-small);
+    line-height: var(--fs-regular);
+    margin-bottom: .5rem;
+}
+
 body {
     height: 100vh;
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--fs-small);
     line-height: 1rem;
-    font-weight: var(--regular);
+    font-weight: var(--fw-regular);
     color: hsl(var(--white));
 }
 
@@ -67,9 +107,9 @@ body.dark-mode {
 }
 
 header {
+    padding: 30px 16px;
     display: flex;
     justify-content: space-between;
-    padding: 28px 80px 28px 80px;
 }
 
 .box-shadow {
@@ -87,8 +127,9 @@ header.light-mode {
 
 h1 {
     margin: unset;
-    line-height: 1.5rem;
-    font-size: 1.5rem;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: var(--fw-extra-bold);
 }
 
 button:hover {
@@ -96,46 +137,64 @@ button:hover {
 }
 
 button {
-    background-color: transparent;
     border: none;
     justify-content: space-between;
     display: flex;
     align-items: center;
-    width: 136px;
-    height: 40px;
-    font-size: 1rem;
+    font-size: var( --fs-extra-small);
+    line-height: var(--fs-regular);
 }
 
 #dark-mode-btn {
-    padding: 0 1rem;
-    font-weight: var(--semi-bold);
+    font-weight: var(--fw-semi-bold);
+    line-height: 16px;
+    width: 96px;
 }
 
 #back-btn {
-    padding: 0px 36px;
-    font-weight: var(--regular);
+    font-size: 14px;
+    font-weight: var(--fw-regular);
     margin-top: 2rem;
+    width: 104px;
+    height: 32px;
+    padding: 0 24px;
+    box-shadow: 0 4px 4px hsl(var(--black), 0.06), 0 0 7px 0px hsl(var(--black), 0.06);
 }
 
 main {
-    padding: 48px 80px;
+    padding: 24px 16px;
 }
 
 #parameters {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-rows: 48px 48px;
+    gap: 40px;
+    grid-auto-columns: 100%;
 }
 
 #search {
-    width: 480px;
-    height: 56px;
     border-radius: var(--border-radius);
-    margin-right: 40px;
+    overflow: hidden;
+}
+
+#search>input {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 12px;
+    padding: 0 0 0 74px;
+}
+
+#search>i {
+    position: absolute;
+    margin-top: 16px;
+    margin-left: 32px;
 }
 
 #continents-btn {
     width: 200px;
-    height: 56px;
+    height: 100%;
     border-radius: var(--border-radius);
     padding: 0 24px;
     text-align: left;
@@ -152,8 +211,8 @@ main {
 #continents-list {
     position: absolute;
     width: 200px;
-    height: 164px;
-    padding: unset;
+    height: 144px;
+    padding: 16px 0;
     margin-top: 4px;
     border-radius: var(--border-radius);
     overflow: hidden;
@@ -162,25 +221,24 @@ main {
 }
 
 #continents-list button {
-    border: none;
     text-align: left;
     padding: 0 24px;
-    line-height: 20px;
+    line-height: 16px;
     width: 100%;
 }
 
 #countries {
-    margin-top: 48px;
+    margin: 32px 40px 52px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 75px;
 }
 
 .country-card {
-    max-width: 264px;
-    height: 336px;
+    min-height: 336px;
     border-radius: var(--border-radius);
     overflow: hidden;
+    aspect-ratio: 1 / 1.2727;
 }
 
 .country-card:hover {
@@ -189,30 +247,53 @@ main {
 
 .country-card-details {
     padding: 24px;
+    display: flex;
+    flex-direction: column;
 }
 
 .preview-country-name{
-    font-size: 18px;
-    font-weight: var(--extra-bold);
+    font-size: var(--fs-large);
+    font-weight: var(--fw-extra-bold);
     margin-bottom: 1rem;
     line-height: 26px;
 }
 .preview-detail-prefix {
-    font-weight: var(--semi-bold);
+    font-weight: var(--fw-semi-bold);
     margin-bottom: 8px;
 }
 
 #country-preview {
-    width: auto;
-    height: 400px;
-    margin-top: 80px;
+    width: 320px;
+    margin: 64px auto;
+    align-items: center;
+    flex-direction: column;
 }
 
 #country-preview-flag {
-    width: 560px;
+    width: auto;
     border-radius: 5px;
     overflow: hidden;
     height: fit-content;
+}
+
+#country-preview-details {
+    margin-top: 44px;
+    width: 100%;
+    background-color: transparent;
+}
+
+#country-preview-details>div {
+    display: flex;
+    flex-direction: column;
+}
+
+#country-preview-details>div>div {
+    display: flex;
+    flex-direction: column;
+}
+
+#country-preview-details>div>div:first-child {
+    margin-bottom: 32px;
 }
 
 .attribution { 
@@ -234,5 +315,114 @@ main {
     font-weight: 700;
 }
 
-@media (min-width: 778px) {
+@media (min-width: 650px) {
+    header {
+        padding: 24px 80px;
+    }
+
+    h1 {
+        line-height: 2rem;
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: var(--fs-extra-large);
+    }
+    
+    button {
+        font-size: 14px;
+    }
+
+    #dark-mode-btn {
+        padding: 0 1rem;
+        width: 136px;
+        height: 2rem;
+        font-size: var(--fs-regular);
+    }
+
+    main {
+        padding: 48px 80px;
+    }
+    
+    #parameters {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        height: 136px;
+    }
+
+    #parameters {
+        display: grid;
+        grid-template-rows: 48px 48px;
+        gap: 40px;
+        grid-auto-columns: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        flex-direction: row; 
+        height: 56px;
+    }
+
+    #search {
+        width: 100%;
+        max-width: 480px;
+        margin-right: 40px;
+    }
+
+    #search>input {
+        font-size: 14px;
+        line-height: 20px;
+        height: 100%;
+    }
+
+    #search>i {
+        margin-top: 20px;
+    }
+
+    #continents-list {
+        height: 164px;
+    }
+
+    #continents-list button {
+        line-height: 20px;
+    }
+
+    #countries {
+        margin: 48px 0;
+    }
+
+    .country-card {
+        max-width: 264px;
+    }
+
+    #country-preview {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #country-preview-flag {
+        flex-basis: 50%;
+        width: 560px;
+        min-width: 350px;
+        max-width: 560px;
+    }
+
+    #country-preview-details {
+        flex-basis: 50%;
+        margin-left: 80px;
+        min-width: 350px;
+        max-width: 600px;
+    }
+
+    #country-preview-details>div {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    #country-preview-details button {
+        width: 96px;
+        height: 28px;
+        justify-content: center;
+        margin-left: 1rem;
+    }
 }

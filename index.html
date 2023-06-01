@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/a404781b47.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
   <script src="jquery-3.6.4.min.js"></script>
   <script src="rest-countries-api.js"></script>
   <title>Frontend Mentor | Rest Countries API</title>
@@ -24,10 +24,13 @@
   </header>
   <main>
     <div id="parameters">
-      <input id="search" class="light-mode box-shadow">
+      <div id="search" class="light-mode box-shadow" >
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input class="light-mode" placeholder="Search for a country…">
+      </div>
       <div>
         <button id="continents-btn" class="light-mode box-shadow">Filter by Region</button>
-        <ul id="continents-list" class="hide box-shadow">
+        <ul id="continents-list" class="hide box-shadow light-mode">
           <button class="light-mode">Africa</button>
           <button class="light-mode">America</button>
           <button class="light-mode">Asia</button>
@@ -39,9 +42,10 @@
     <div id="countries">
 
     </div>
-    <button id="back-btn" class="hide box-shadow"><i class="fa-solid fa-arrow-left"></i> Back</button>
+    <button id="back-btn" class="hide box-shadow light-mode"><i class="fa-solid fa-arrow-left"></i> Back</button>
     <div id="country-preview" class="hide">
-
+      <div id="country-preview-flag" class="box-shadow"></div>
+      <div id="country-preview-details" class="light-mode"></div>
     </div>
   </main>
   
@@ -51,36 +55,3 @@
   </footer> -->
 </body>
 </html>
-
-
-
-<!-- <div id="country-preview-details" style="
-    width: 598px;
-    height: 323px;
-    background-color: aqua;
-    margin-left: 120px;
-"><p style="
-    font-size: 2rem;
-    font-weight: var(--extra-bold);
-">name.common
-</p>
-  <div style="
-    display: flex;
-    margin-top: 23px;
-    justify-content: space-between;
-">
-<div style="
-    max-width: 250px;
-">
-  <p>Naitive Name: name.naitiveName.ara.common</p>
-  <p>Population: population
-  </p><p>Region: region</p>
-  <p>Sub Region: subregion</p>
-  <p>Capital: capital[0]</p>
-</div>
-<div style="
-    max-width: 250px;
-">
-<p>Top Level Domain: tld[0]</p>
-<p>Currencies: currencies</p>
-<p>Languages: languages</p></div></div></div> -->
