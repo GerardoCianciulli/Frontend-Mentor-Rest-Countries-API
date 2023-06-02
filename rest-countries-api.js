@@ -113,9 +113,13 @@ $(document).ready(function(){
 
   $("#continents-list>button").click(function(e){
     var regionFilter = e.target.innerText;
+    if (regionFilter == "Show All") {
+      $("#countries").children().show();
+    } else {
+      $("#countries").children().hide()
+      $( "div:contains('" + regionFilter +"')" ).parent().show()
+    }
 
-    $("#countries").children().hide()
-    $( "div:contains('" + regionFilter +"')" ).parent().show()
     $("#continents-list").toggleClass("hide").toggleClass("showFlexBox");
   })
 });
