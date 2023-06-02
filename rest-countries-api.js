@@ -45,7 +45,7 @@ function createCountryDetails(pEvent, pID) {
                   $("#back-btn").show();
                   $("#country-preview").toggleClass("hide").toggleClass("showFlexBox");
                   
-                  $("#country-preview-flag").append("<img src='" + flag + "'/>");
+                  $("#country-preview-flag").append("<img src='" + flag + "' alt='flag'/>");
                   $("#country-preview-details")
                     .append("<h2>" + name + "</h2>")
                     .append($("<div/>")
@@ -77,7 +77,7 @@ function createCountryPreview(value) {
       .append("<h3>Region:&nbsp;<p>" + region + "</p>")
       .append("<h3>Capital:&nbsp;<p>" + capital + "</p>"),
     country = $("<div id='" + id + "' class='country-card box-shadow light-mode'/>")
-    .append("<div><img src=" + flag + "></div")
+    .append("<div><img src='" + flag + "' alt='flag'></div")
     .append(details);
     
     country.click(createCountryDetails);
