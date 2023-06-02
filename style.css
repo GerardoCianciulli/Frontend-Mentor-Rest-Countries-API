@@ -43,36 +43,31 @@ img, svg {
     overflow: visible;
 }
 
-h2, h3 {
-    font-weight: var(--fw-extra-bold);
-}
-
 h2 {
+    font-weight: var(--fw-extra-bold);
     font-size: 22px;
     line-height: 40px;
     margin-bottom: 23px;
 }
 
-h3 {
+.country-card-details>h2 {
     font-size: var(--fs-large);
     line-height: 26px;
     margin-bottom: 1rem;
 }
 
-h4, h5 {
+h3 {
     display: -webkit-inline-box;
     font-weight: var(--fw-semi-bold);
-}
-
-h4>p, h5>p {
-    font-weight: var(--fw-regular);
-}
-h4 {
     font-size: 12px;
     line-height: 32px;
 }
 
-h5 {
+h3>p {
+    font-weight: var(--fw-regular);
+}
+
+.country-card-details>h3 {
     font-size: var(--fs-small);
     line-height: var(--fs-regular);
     margin-bottom: .5rem;

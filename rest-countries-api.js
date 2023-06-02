@@ -29,7 +29,7 @@ function createCountryDetails(pEvent, pID) {
                     topLevelDomain = response.tld[0],
                     currencies = Object.values(response.currencies)[0].name,
                     languages = Object.values(response.languages).toString(),
-                    borderCountries = $("<h4>Border Countries:&nbsp;</h4>");
+                    borderCountries = $("<h3>Border Countries:&nbsp;</h4>");
 
                   Object.values(response.borders).forEach(function(pCountryID){
                     var countryButton = $("<button class='light-mode box-shadow'>" + ALL_COUNTRIES_JSON.find(element => element.cca3 == pCountryID).name.common + "</button>"),
@@ -50,15 +50,15 @@ function createCountryDetails(pEvent, pID) {
                     .append("<h2>" + name + "</h2>")
                     .append($("<div/>")
                       .append($("<div/>")
-                        .append("<h4>Naitive Name:&nbsp;<p>" + nativeName + "</p>")
-                        .append("<h4>Population:&nbsp;<p>" + population + "</p>")
-                        .append("<h4>Region:&nbsp;<p>" + region + "</p>")
-                        .append("<h4>Region:&nbsp;<p>" + subregion + "</p>")
-                        .append("<h4>Capital:&nbsp;<p>" + capital + "</p>"))
+                        .append("<h3>Naitive Name:&nbsp;<p>" + nativeName + "</p>")
+                        .append("<h3>Population:&nbsp;<p>" + population + "</p>")
+                        .append("<h3>Region:&nbsp;<p>" + region + "</p>")
+                        .append("<h3>Region:&nbsp;<p>" + subregion + "</p>")
+                        .append("<h3>Capital:&nbsp;<p>" + capital + "</p>"))
                       .append($("<div/>")
-                        .append("<h4>Top Level Domain:&nbsp;<p>" + topLevelDomain + "</p>")
-                        .append("<h4>Currencies:&nbsp;<p>" + currencies + "</p>")
-                        .append("<h4>Languages:&nbsp;<p>" + languages + "</p>")))
+                        .append("<h3>Top Level Domain:&nbsp;<p>" + topLevelDomain + "</p>")
+                        .append("<h3>Currencies:&nbsp;<p>" + currencies + "</p>")
+                        .append("<h3>Languages:&nbsp;<p>" + languages + "</p>")))
                     .append(borderCountries);
                 })
                 .catch((error) => console.error({ error }));
@@ -72,10 +72,10 @@ function createCountryPreview(value) {
     capital = value.capital[0],
     flag = value.flags.png,
     details = $("<div class='country-card-details'/>")
-      .append("<h3>" + name + "</h3>")
-      .append("<h5>Population:&nbsp;<p>" + population + "</p>")
-      .append("<h5>Region:&nbsp;<p>" + region + "</p>")
-      .append("<h5>Capital:&nbsp;<p>" + capital + "</p>"),
+      .append("<h2>" + name + "</h2>")
+      .append("<h3>Population:&nbsp;<p>" + population + "</p>")
+      .append("<h3>Region:&nbsp;<p>" + region + "</p>")
+      .append("<h3>Capital:&nbsp;<p>" + capital + "</p>"),
     country = $("<div id='" + id + "' class='country-card box-shadow light-mode'/>")
     .append("<div><img src=" + flag + "></div")
     .append(details);
