@@ -1,4 +1,5 @@
-var ALL_COUNTRIES_JSON;
+var ALL_COUNTRIES_JSON,
+  darkMode = false;
 
 function allCountriesJSON(fields) {
 	const root = "https://restcountries.com/v3.1/all";
@@ -29,13 +30,14 @@ function createCountryDetails(pEvent, pID) {
                     topLevelDomain = response.tld[0],
                     currencies = Object.values(response.currencies)[0].name,
                     languages = Object.values(response.languages).toString(),
-                    borderCountries = $("<h3>Border Countries:&nbsp;</h4>");
+                    borderCountries = $("<div id='country-preview-borders'/>");
 
                   Object.values(response.borders).forEach(function(pCountryID){
-                    var countryButton = $("<button class='light-mode box-shadow'>" + ALL_COUNTRIES_JSON.find(element => element.cca3 == pCountryID).name.common + "</button>"),
+                    var countryButton = $("<button class='" + (darkMode ? "dark-mode" : "light-mode") + " box-shadow'>" + ALL_COUNTRIES_JSON.find(element => element.cca3 == pCountryID).name.common + "</button>"),
                       id = pCountryID;
                     countryButton.click(function(_pEvent){
-                      $("#back-btn").trigger("click");
+                      $("#country-preview-flag").empty();
+                      $("#country-preview-details").empty();
                       createCountryDetails(_pEvent, id)});
                     borderCountries.append(countryButton);
                   });
@@ -43,7 +45,7 @@ function createCountryDetails(pEvent, pID) {
                   $("#parameters").hide();
                   $("#countries").hide();
                   $("#back-btn").show();
-                  $("#country-preview").toggleClass("hide").toggleClass("showFlexBox");
+                  $("#country-preview").removeClass("hide").addClass("showFlexBox");
                   
                   $("#country-preview-flag").append("<img src='" + flag + "' alt='flag'/>");
                   $("#country-preview-details")
@@ -59,6 +61,7 @@ function createCountryDetails(pEvent, pID) {
                         .append("<h3>Top Level Domain:&nbsp;<p>" + topLevelDomain + "</p>")
                         .append("<h3>Currencies:&nbsp;<p>" + currencies + "</p>")
                         .append("<h3>Languages:&nbsp;<p>" + languages + "</p>")))
+                    .append($("<h3>Border Countries:</h4>"))
                     .append(borderCountries);
                 })
                 .catch((error) => console.error({ error }));
@@ -92,6 +95,7 @@ $(document).ready(function(){
   $("#dark-mode-btn").click(function(){
     var selector = $("body").hasClass("light-mode") ? $(".light-mode") : $(".dark-mode");
     selector.toggleClass("light-mode").toggleClass("dark-mode");
+    darkMode = !darkMode;
   });
 
   $("#continents-btn").click(function(){
@@ -114,7 +118,6 @@ $(document).ready(function(){
     $( "div:contains('" + regionFilter +"')" ).parent().show()
     $("#continents-list").toggleClass("hide").toggleClass("showFlexBox");
   })
-
 });
 
 

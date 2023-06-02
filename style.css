@@ -46,7 +46,7 @@ img, svg {
 h2 {
     font-weight: var(--fw-extra-bold);
     font-size: 22px;
-    line-height: 40px;
+    line-height: 2.5rem;
     margin-bottom: 23px;
 }
 
@@ -59,7 +59,7 @@ h2 {
 h3 {
     display: -webkit-inline-box;
     font-weight: var(--fw-semi-bold);
-    font-size: .75rem;
+    font-size: 14px;
     line-height: var(--fs-extra-large);
 }
 
@@ -102,14 +102,14 @@ body.dark-mode {
 }
 
 header {
-    padding: 30px 16px;
+    padding: 1.875rem 1rem;
     display: flex;
     justify-content: space-between;
 }
 
 .box-shadow {
     border: none;
-    box-shadow: 0 2px 9px hsl(var(--black), 0.06);
+    box-shadow: 0 0.125rem .5625rem hsl(var(--black), 0.06);
 }
 
 header.dark-mode {
@@ -122,7 +122,7 @@ header.light-mode {
 
 h1 {
     margin: unset;
-    line-height: 20px;
+    line-height: 1.25rem;
     font-size: .875rem;
     font-weight: var(--fw-extra-bold);
 }
@@ -142,18 +142,19 @@ button {
 
 #dark-mode-btn {
     font-weight: var(--fw-semi-bold);
-    line-height: 16px;
-    width: 96px;
+    line-height: 1rem;
+    width: 6rem;
 }
 
 #back-btn {
     font-size: .875rem;
     font-weight: var(--fw-regular);
-    margin-top: 2rem;
-    width: 104px;
+    margin: 1rem 12px 0;
+    width: 6.5rem;
     height: var(--fs-extra-large);
     padding: 0 1.5rem;
     box-shadow: 0 .25rem .25rem hsl(var(--black), 0.06), 0 0 7px 0px hsl(var(--black), 0.06);
+    border-radius: 6px;
 }
 
 main {
@@ -163,7 +164,7 @@ main {
 #parameters {
     display: grid;
     grid-template-rows: 3rem 3rem;
-    gap: 40px;
+    gap: 2.5rem;
     grid-auto-columns: 100%;
 }
 
@@ -178,7 +179,7 @@ main {
     border: none;
     border-radius: var(--border-radius);
     font-size: .75rem;
-    padding: 0 0 0 74px;
+    padding: 0 0 0 4.625rem;
 }
 
 #search>i {
@@ -218,12 +219,12 @@ main {
 #continents-list button {
     text-align: left;
     padding: 0 1.5rem;
-    line-height: 16px;
+    line-height: 1rem;
     width: 100%;
 }
 
 #countries {
-    margin: 2rem 40px 52px;
+    margin: 2rem 2.5rem 52px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
     gap: 75px;
@@ -258,7 +259,7 @@ main {
 }
 
 #country-preview {
-    width: 320px;
+    width: max-content;
     margin: 4rem auto;
     align-items: center;
     flex-direction: column;
@@ -266,7 +267,7 @@ main {
 
 #country-preview-flag {
     width: auto;
-    border-radius: 5px;
+    border-radius: 10px;
     overflow: hidden;
     height: fit-content;
 }
@@ -277,12 +278,12 @@ main {
     background-color: transparent;
 }
 
-#country-preview-details>div {
+#country-preview-details>div:not(:last-child)  {
     display: flex;
     flex-direction: column;
 }
 
-#country-preview-details>div>div {
+#country-preview-details>div>div{
     display: flex;
     flex-direction: column;
 }
@@ -291,12 +292,23 @@ main {
     margin-bottom: 2rem;
 }
 
-#country-preview-details button {
-    width: 96px;
+#country-preview-details>h3 {
+    font-size: 1rem;
+    margin: 34px 0 1rem;
+}
+
+#country-preview-borders {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 96px);
+    gap: 10px;
+}
+
+#country-preview-borders button{
+    width: 6rem;
     height: 28px;
     justify-content: center;
-    margin-left: 1rem;
     font-weight: var(--fw-regular);
+    border-radius: 2px;
 }
 
 @media (min-width: 650px) {
@@ -313,6 +325,10 @@ main {
         font-size: var(--fs-extra-large);
     }
     
+    h3 {    
+        float: left;
+    }
+
     button {
         font-size: .875rem;
     }
@@ -338,7 +354,7 @@ main {
     #parameters {
         display: grid;
         grid-template-rows: 3rem 3rem;
-        gap: 40px;
+        gap: 2.5rem;
         grid-auto-columns: 100%;
         display: flex;
         justify-content: space-between;
@@ -350,17 +366,17 @@ main {
     #search {
         width: 100%;
         max-width: 480px;
-        margin-right: 40px;
+        margin-right: 2.5rem;
     }
 
     #search>input {
         font-size: .875rem;
-        line-height: 20px;
+        line-height: 1.25rem;
         height: 100%;
     }
 
     #search>i {
-        margin-top: 20px;
+        margin-top: 1.25rem;
     }
 
     #continents-list {
@@ -368,7 +384,7 @@ main {
     }
 
     #continents-list button {
-        line-height: 20px;
+        line-height: 1.25rem;
     }
 
     #countries {
@@ -395,12 +411,20 @@ main {
     #country-preview-details {
         flex-basis: 50%;
         margin-left: 80px;
-        min-width: 350px;
+        min-width: 400px;
         max-width: 600px;
     }
 
-    #country-preview-details>div {
+    #country-preview-details>div:not(:last-child) {
         flex-direction: row;
         justify-content: space-between;
+    }
+
+    #country-preview-details>h3 {
+        padding: 34px 0 0 0;
+    }
+
+    #country-preview-borders {
+        padding: 68px 0 0 1rem;
     }
 }
