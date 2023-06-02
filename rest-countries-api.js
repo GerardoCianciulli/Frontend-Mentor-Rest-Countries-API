@@ -1,3 +1,8 @@
+jQuery.expr[':'].icontains = function(a, i, m) {
+  return jQuery(a).text().toUpperCase()
+      .indexOf(m[3].toUpperCase()) >= 0;
+};
+
 var ALL_COUNTRIES_JSON,
   darkMode = false;
 
@@ -116,12 +121,18 @@ $(document).ready(function(){
     if (regionFilter == "Show All") {
       $("#countries").children().show();
     } else {
-      $("#countries").children().hide()
+      $("#countries").children().hide();
       $( "div:contains('" + regionFilter +"')" ).parent().show()
     }
 
     $("#continents-list").toggleClass("hide").toggleClass("showFlexBox");
   })
+
+  $("#search>input").change(function(e){
+    var searchValue = $("#search>input").val();
+    $("#countries").children().hide();
+    $( "div:icontains('" + searchValue +"')" ).parent().show()
+  });
 });
 
 
