@@ -25,13 +25,14 @@ function singleCountryJSON(id, fields) {
 function createCountryDetails(pEvent, pID) {
               singleCountryJSON(pID == undefined ? pEvent.currentTarget.id : pID, "flags,name,tld,cca3,currencies,capital,region,subregion,languages,borders,population")
                 .then((response) => {
+                  console.log(response.flags.svg)
                   var name = response.name.common,
                     nativeName = Object.values(response.name.nativeName)[0].official,
                     population = response.population,
                     region = response.region,
                     subregion = response.subregion,
                     capital = response.capital[0],
-                    flag = response.flags.png,
+                    flag = response.flags,
                     topLevelDomain = response.tld[0],
                     currencies = Object.values(response.currencies)[0].name,
                     languages = Object.values(response.languages).toString(),
@@ -52,7 +53,7 @@ function createCountryDetails(pEvent, pID) {
                   $("#back-btn").show();
                   $("#country-preview").removeClass("hide").addClass("showFlexBox");
                   
-                  $("#country-preview-flag").append("<img src='" + flag + "' alt='flag'/>");
+                  $("#country-preview-flag").append("<img src='" + flag.svg + "' alt='" + flag.alt + "'/>");
                   $("#country-preview-details")
                     .append("<h2>" + name + "</h2>")
                     .append($("<div/>")
@@ -78,14 +79,14 @@ function createCountryPreview(value) {
     population = value.population,
     region = value.region,
     capital = value.capital[0],
-    flag = value.flags.png,
+    flag = value.flags,
     details = $("<div class='country-card-details'/>")
       .append("<h2>" + name + "</h2>")
       .append("<h3>Population:&nbsp;<p>" + population + "</p>")
       .append("<h3>Region:&nbsp;<p>" + region + "</p>")
       .append("<h3>Capital:&nbsp;<p>" + capital + "</p>"),
     country = $("<div id='" + id + "' class='country-card box-shadow light-mode'/>")
-    .append("<div><img src='" + flag + "' alt='flag'></div")
+    .append("<div><img src='" + flag.png + "' alt='" + flag.alt + "'></div")
     .append(details);
     
     country.click(createCountryDetails);
